@@ -9,11 +9,13 @@ import {Todo} from '../../model/todo.model';
 })
 export class TodosComponent implements OnInit {
   todos: Todo[];
+  todo: Todo;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getallTodos().subscribe(todos => {
-      this.todos = todos;
+    this.apiService.deleteTodo().subscribe(todos => {
+      this.todo = todos;
+      console.log(todos);
     });
   }
 

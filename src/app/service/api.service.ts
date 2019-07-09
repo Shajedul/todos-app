@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Api-Token': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNTYyNjcxOTYzfQ.Sse1V9lP3yrcTFt3JdxNrRaTlhc8yZelciTfubbG5Dg'
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNTYyNjcxOTYzfQ.Sse1V9lP3yrcTFt3JdxNrRaTlhc8yZelciTfubbG5Dg'
   })
 };
 @Injectable({
@@ -16,18 +16,25 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getallTodos(): Observable<Todo[]> {
-    return this.httpClient.get<Todo[]>(this.getUrl);
+    return this.httpClient.get<Todo[]>(this.getUrl, httpOptions);
   }
-  public getTodo(todo: Todo) {
-
+  public getTodo(): Observable<Todo> {
+    return this.httpClient.get<Todo>(`${this.getUrl}/7`, httpOptions);
   }
-  public editTodo(todo: Todo) {
-
+  public editTodo(): Observable<Todo> {
+    const todo = {
+      title: 'Nala'
+    };
+    return this.httpClient.put<Todo>(`${this.getUrl}/8`, todo, httpOptions);
   }
-  public deleteTodo(todo: Todo) {
-
+  public deleteTodo(): Observable<Todo> {
+    return this.httpClient.delete<Todo>(`${this.getUrl}/10`, httpOptions);
   }
-  public createTodo(todo: Todo) {
+  public createTodo(): Observable<Todo> {
+    const todo = {
+      title: 'Bruce Wayne',
+    };
+    return this.httpClient.post<Todo>(this.getUrl, todo, httpOptions);
 
   }
 }

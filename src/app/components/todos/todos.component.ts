@@ -13,10 +13,10 @@ export class TodosComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.deleteTodo().subscribe(todos => {
-      this.todo = todos;
+    this.apiService.getallTodos().subscribe(todos => {
+      this.todos = todos;
+      //localStorage.setItem('token', todos.auth_token);
       console.log(todos);
     });
   }
-
 }

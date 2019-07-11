@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
-import {HttpInterceptor} from '@angular/common/http';
+import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
 import { ApiService } from './api.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

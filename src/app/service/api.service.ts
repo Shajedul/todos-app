@@ -31,10 +31,10 @@ export class ApiService {
     return this.httpClient.delete<Todo>(`${this.getUrl}/10`, httpOptions);
   }
   // Create Todo
-  public createTodo(): Observable<Todo> {
-    const todo = {
-      title: 'Bruce Wayne',
-    };
+  public createTodo(todo): Observable<Todo> {
+    // const todo = {
+    //   title: 'Bruce Wayne',
+    // };
     return this.httpClient.post<Todo>(this.getUrl, todo, httpOptions);
   }
   public login(): Observable<any> {

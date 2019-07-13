@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Todo} from '../../model/todo.model';
 
+
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -18,5 +19,18 @@ export class TodosComponent implements OnInit {
       //localStorage.setItem('token', todos.auth_token);
       console.log(todos);
     });
+  }
+  public addTodo(todo) {
+    this.apiService.createTodo(todo).subscribe(( todos=> {
+      this.todos.push(todo);
+
+
+      this.apiService.getallTodos().subscribe(todos => {
+        this.todos = todos;
+        //localStorage.setItem('token', todos.auth_token);
+        console.log(todos);
+      });
+      }
+    ));
   }
 }

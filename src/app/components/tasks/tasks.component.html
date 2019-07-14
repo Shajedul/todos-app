@@ -1,1 +1,8 @@
 <p>tasks works!</p>
+<div *ngFor="let task of tasks">
+    <Ul>
+        <li>{{task.name}}</li>
+    </Ul>
+</div>
+<!-- <a routerLink = '/tasks/{{todo_id}}/items'>Add task to this Todo</a> -->
+<app-add-item (addItem)= "addItem($event)"></app-add-item>

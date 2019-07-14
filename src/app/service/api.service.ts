@@ -58,4 +58,10 @@ export class ApiService {
   public getToken() {
     return localStorage.getItem('token');
   }
+  public getallTasks(todo_id): Observable<any> {
+    return this.httpClient.get<any>(`${this.getUrl}/${todo_id}/items`)
+  }
+  public createTask(task, todo_id): Observable<any> {
+    return this.httpClient.post<any>(`${this.getUrl}/${todo_id}/items`, task);
+  }
 }

@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 
 import { AboutComponent } from './components/about/about.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
     AddTodosComponent,
     AboutComponent,
     TasksComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,5 @@
+<div>
+    <h1>{{todo.title}}</h1>
+    <h3>{{todo.created_by}}</h3>
+</div>
+<app-add-todos (addTodo)="updateTodo($event)" [title]="todo.title" ></app-add-todos>

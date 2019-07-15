@@ -11,6 +11,7 @@ import {Todo} from '../../model/todo.model';
 export class TodosComponent implements OnInit {
   todos: Todo[];
   todo: Todo;
+  toggler: string= 'hidden';
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -33,4 +34,12 @@ export class TodosComponent implements OnInit {
       }
     ));
   }
+  public onTodosDelete(id) {
+    this.apiService.deleteTodo(id).subscribe( todo => {
+      this.apiService.getallTodos().subscribe(todos => {
+        this.todos = todos;
+      });
+    });
+  }
+
 }

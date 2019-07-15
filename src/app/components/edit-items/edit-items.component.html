@@ -1,0 +1,8 @@
+<div>
+    <ul>
+        <li>{{item.name}}</li>
+        <li>{{item.done}}</li>
+    </ul>
+</div>
+
+<app-add-items (addItem)="updateItem($event)" [name]= "item.name" [done]='item.done'></app-add-items>

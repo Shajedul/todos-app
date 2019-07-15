@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit, Output, Input} from '@angular/core';
 import {EventEmitter} from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import {EventEmitter} from '@angular/core';
   styleUrls: ['./add-todos.component.css']
 })
 export class AddTodosComponent implements OnInit {
-  title: string;
+  @Input() title: string;
   @Output() addTodo: EventEmitter<any> = new EventEmitter();
   constructor() { }
 

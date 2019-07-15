@@ -18,8 +18,8 @@ export class ApiService {
   public getallTodos(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>(this.getUrl);
   }
-  public getTodo(): Observable<Todo> {
-    return this.httpClient.get<Todo>(`${this.getUrl}/7`, httpOptions);
+  public getTodo(id): Observable<Todo> {
+    return this.httpClient.get<Todo>(`${this.getUrl}/${id}`, httpOptions);
   }
   public editTodo(): Observable<Todo> {
     const todo = {
@@ -27,8 +27,9 @@ export class ApiService {
     };
     return this.httpClient.put<Todo>(`${this.getUrl}/8`, todo, httpOptions);
   }
-  public deleteTodo(): Observable<Todo> {
-    return this.httpClient.delete<Todo>(`${this.getUrl}/10`, httpOptions);
+  public deleteTodo(id): Observable<any> {
+    console.log(`${this.getUrl}/${id}`);
+    return this.httpClient.delete<any>(`${this.getUrl}/${id}`, httpOptions);
   }
   // Create Todo
   public createTodo(todo): Observable<Todo> {
@@ -44,17 +45,9 @@ export class ApiService {
     };
     return this.httpClient.post<any>('http://localhost:3000/auth/login', userData);
   }
-  public signup(): Observable<any> {
-    const signupData = {
-      email: 'romel@gmail.com',
-      name: 'Romel',
-      password: 'romel',
-      password_confirmation: 'romel',
-      role: 'admin',
-    };
+  public signup(signupData): Observable<any> {
     return this.httpClient.post<any>('http://localhost:3000/signup', signupData);
   }
-
   public getToken() {
     return localStorage.getItem('token');
   }
@@ -63,5 +56,18 @@ export class ApiService {
   }
   public createTask(task, todo_id): Observable<any> {
     return this.httpClient.post<any>(`${this.getUrl}/${todo_id}/items`, task);
+  }
+  public updateTodo(id, todo): Observable<any> {
+    return this.httpClient.put<any>(`${this.getUrl}/${id}`, todo );
+  }
+  public getItem(todo_id, item_id): Observable<any> {
+    return this.httpClient.get<any>(`${this.getUrl}/${todo_id}/items/${item_id}`);
+  }
+
+  public updateItem(todo_id, item_id, newItem) {
+    return this.httpClient.put<any>(`${this.getUrl}/${todo_id}/items/${item_id}`, newItem)
+  }
+  public deleteItem(todo_id,item_id): Observable<any> {
+    return this.httpClient.delete<any>(`${this.getUrl}/${todo_id}/items/${item_id}`)
   }
 }

@@ -3,10 +3,10 @@
     <li>{{todo.id}}</li>
     <li>
       <a routerLink="/tasks/{{todo.id}}/items" >{{todo.title}}</a>
+      <form (ngSubmit)="onTodosDelete(todo.id)">
+        <button type="submit"> Delete </button>
+      </form>
       
-      <a href="">  Edit</a>
-      <a href="">  Delete</a>
-      <a href="">  Update</a>
     </li>
     <li>{{todo.created_by}}</li>
     <li>{{todo.created_at}}</li>

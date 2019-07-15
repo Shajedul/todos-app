@@ -13,7 +13,10 @@ import {FormsModule} from '@angular/forms';
 
 import { AboutComponent } from './components/about/about.component';
 import { TasksComponent } from './components/tasks/tasks.component';
-import { AddItemComponent } from './components/add-item/add-item.component';
+import { ShowTodoComponent } from './components/show-todo/show-todo.component';
+import { ShowItemsComponent } from './components/show-items/show-items.component';
+import { AddItemsComponent } from './components/add-items/add-items.component';
+import { EditItemsComponent } from './components/edit-items/edit-items.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     AddTodosComponent,
     AboutComponent,
     TasksComponent,
-    AddItemComponent,
+    ShowTodoComponent,
+    ShowItemsComponent,
+    AddItemsComponent,
+    EditItemsComponent,
   ],
   imports: [
     BrowserModule,

@@ -38,10 +38,10 @@ export class ApiService {
     // };
     return this.httpClient.post<Todo>(this.getUrl, todo, httpOptions);
   }
-  public login(): Observable<any> {
+  public login(email, password): Observable<any> {
     const userData = {
-      email: 'shajedul@gmail.com',
-      password: 'shajedul'
+      email: email,
+      password: password
     };
     return this.httpClient.post<any>('http://localhost:3000/auth/login', userData);
   }

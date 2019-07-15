@@ -17,6 +17,8 @@ import { ShowTodoComponent } from './components/show-todo/show-todo.component';
 import { ShowItemsComponent } from './components/show-items/show-items.component';
 import { AddItemsComponent } from './components/add-items/add-items.component';
 import { EditItemsComponent } from './components/edit-items/edit-items.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { EditItemsComponent } from './components/edit-items/edit-items.component
     ShowItemsComponent,
     AddItemsComponent,
     EditItemsComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

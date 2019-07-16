@@ -1,1 +1,18 @@
-<p>signup works!</p>
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <input type="text" name="name" [(ngModel)]="name" placeholder="Name">
+        <br>
+        <input type="email" name="email" [(ngModel)]="email" placeholder="Email">
+        <br>
+        <input type="password" name="password" [(ngModel)]="password" placeholder="password">
+        <br>
+        <input type="password" name="password_confiramtion" [(ngModel)]="password_confirmation" placeholder="Password Confirmation">
+        <br>
+        <select name="cars"  name="role" [(ngModel)]="role">
+                <option value="admin">Admin</option>
+                <option value="regular">User</option>
+        </select>
+        <br>
+        <button type="submit" name="submit">Sign Up</button>
+    </form>
+</div>

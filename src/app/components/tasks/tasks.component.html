@@ -1,0 +1,47 @@
+<!--<div>-->
+<!--    <h1>{{task.title}}</h1>-->
+<!--    <a routerLink='../../../tasks/{{task.id}}'>Edit</a>-->
+<!--</div>-->
+<!--<div *ngFor="let task of tasks">-->
+<!--    <Ul>-->
+<!--        <li><a routerLink="/todos/{{todo_id}}/items/{{task.id}}">{{task.name}}</a></li>-->
+<!--        <li>{{task.done}}</li>-->
+<!--        <li>-->
+<!--            <form (ngSubmit)="onItemDelete(todo_id, task.id)" >-->
+<!--                <button>Delete</button>-->
+<!--            </form>-->
+<!--        </li>-->
+<!--    </Ul>-->
+<!--</div>-->
+<!--&lt;!&ndash; <a routerLink = '/tasks/{{todo_id}}/items'>Add task to this Todo</a> &ndash;&gt;-->
+<!--<app-add-items (addItem)= "addItem($event)"></app-add-items>-->
+
+
+
+<div class="container container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Done ?</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let task of tasks">
+      <td>
+        <a routerLink="/todos/{{todo_id}}/items/{{task.id}}"> {{task.name}}"</a>
+      </td>
+      <td>{{task.done}}</td>
+      <td>
+        <form (ngSubmit)="onItemDelete(todo_id, task.id)" >
+          <button>Delete</button>
+        </form>
+        <a class="btn btn-info" routerLink="/todos/{{todo_id}}/items/{{task.id}}/edit">Edit</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <app-add-items (addItem)= "addItem($event)"></app-add-items>
+</div>

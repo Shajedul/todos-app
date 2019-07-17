@@ -11,6 +11,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AuthService {
   rootUrl: string = 'http://localhost:3000';
   decoded: any;
+  id: string;
   constructor(private http: HttpClient) { }
 
 
@@ -26,6 +27,8 @@ export class AuthService {
   }
   decodeJWT(res) {
     this.decoded = jwt_decode(res.auth_token);
+    this.id = this.decoded.user_id;
+    console.log(this.id);
     const exp = parseInt(this.decoded.exp);
     return exp;
   }
@@ -33,6 +36,13 @@ export class AuthService {
     const expiresAt = moment().add(exp, 'second' );
     localStorage.setItem('token', res.auth_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
+
+  getuserId() {
+    const token = localStorage.getItem('token');
+    const decoded = jwt_decode(token);
+    this.id = decoded.user_id;
+    return this.id;
   }
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());

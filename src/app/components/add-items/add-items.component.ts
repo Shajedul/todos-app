@@ -22,6 +22,7 @@ export class AddItemsComponent implements OnInit {
       done: this.done
     }
     this.addItem.emit(newItem);
+    this.name = '';
   }
 
 }

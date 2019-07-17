@@ -1,0 +1,33 @@
+<div class="container container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created By</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th *ngIf="authService.isLoggedIn()" >Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let todo of todos; index as todo_id">
+      <td>
+        <a routerLink="/tasks/{{todo.id}}/items" >{{todo.title}}</a>
+      </td>
+      <td>{{todo.created_by}}</td>
+      <td>{{todo.created_at}}</td>
+      <td>{{todo.updated_at}}</td>
+      <td *ngIf="authService.isLoggedIn()">
+        <div *ngIf="todo.created_by == this.userId ">
+          <form (ngSubmit)="onTodosDelete(todo.id)">
+            <button type="submit"> Delete </button>
+          </form>
+          <a class="btn btn-info" routerLink="/tasks/{{todo.id}}">Edit</a>
+        </div>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

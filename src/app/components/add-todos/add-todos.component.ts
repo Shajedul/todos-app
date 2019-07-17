@@ -19,6 +19,7 @@ export class AddTodosComponent implements OnInit {
     };
 
     this.addTodo.emit(todo);
+    this.title = '';
 
   }
 

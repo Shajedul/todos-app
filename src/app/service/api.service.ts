@@ -70,4 +70,7 @@ export class ApiService {
   public deleteItem(todo_id,item_id): Observable<any> {
     return this.httpClient.delete<any>(`${this.getUrl}/${todo_id}/items/${item_id}`)
   }
+  public allTodos(): Observable<Todo[]> {
+    return this.httpClient.get<Todo[]>(`${this.getUrl}/get`);
+  }
 }

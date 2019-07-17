@@ -27,7 +27,17 @@ export class LoginComponent implements OnInit {
     // });
     //console.log(this.email);
     this.authService.login(this.email, this.password);
-    this.router.navigate(['/']);
+    setTimeout(res => {
+      if (this.authService.isLoggedIn()) {
+        window.alert('Successfully Logged in')
+        this.router.navigate(['/']);
+      } else {
+        window.alert('Invalid Login. Please Try again');
+        this.email = '';
+        this.password = '';
+        this.router.navigate(['/login']);
+      }
+    }, 1500);
   }
 
 }

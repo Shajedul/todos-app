@@ -12,7 +12,7 @@ import {Route, Router} from '@angular/router';
 export class TodosComponent implements OnInit {
   todos: Todo[];
   todo: Todo;
-  toggler: string= 'hidden';
+  delete_todo;
   constructor( private apiService: ApiService, private authService: AuthService, private router: Router ) { }
 
   ngOnInit() {
@@ -38,18 +38,14 @@ export class TodosComponent implements OnInit {
     ));
   }
   public onTodosDelete(id) {
-    const r = confirm('Are you sure to delete this item?');
-
-    if (r) {
-      console.log('Starting to delete');
-      this.apiService.deleteTodo(id).subscribe( todo => {
-        this.apiService.getallTodos().subscribe(todos => {
-          this.todos = todos;
-        });
+    this.apiService.deleteTodo(id).subscribe( todo => {
+      this.apiService.getallTodos().subscribe(todos => {
+        this.todos = todos;
       });
-    } else {
-      window.alert('Action reverted');
-    }
+    });
+  }
+  public setTodo(todo_id) {
+    this.delete_todo = todo_id;
   }
 
 }

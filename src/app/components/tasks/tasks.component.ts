@@ -13,6 +13,8 @@ export class TasksComponent implements OnInit {
   todo_id: number;
   task;
   can;
+  delete_todo;
+  delete_item;
   constructor(private route: ActivatedRoute, private apiService: ApiService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -42,17 +44,13 @@ export class TasksComponent implements OnInit {
   }
 
   public onItemDelete(todo_id, item_id) {
-    const r = confirm('Are you sure to delete this item?');
-    if (r) {
-      this.apiService.deleteItem(todo_id, item_id).subscribe(task=> {
-        this.apiService.getallTasks(this.todo_id).subscribe(tasks =>{
-          console.log(tasks);
-          this.tasks = tasks;
-        });
+    this.apiService.deleteItem(todo_id, item_id).subscribe(task=> {
+      this.apiService.getallTasks(this.todo_id).subscribe(tasks =>{
+        console.log(tasks);
+        this.tasks = tasks;
       });
-    } else {
-      window.alert('Action reverted');
-    }
+    });
+    //console.log(item_id, todo_id);
   }
   public canAdd() {
     if (this.authService.isLoggedIn()) {
@@ -69,6 +67,11 @@ export class TasksComponent implements OnInit {
     } else {
       this.can = false;
     }
+  }
+
+  public setItem(todo_id, item_id) {
+    this.delete_todo = todo_id;
+    this.delete_item = item_id;
   }
 
 }

@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-  public onSubmit()
-  {
+  public onSubmit() {
     // return this.apiService.login(this.email, this.password).subscribe(key =>{
     //   console.log(key);
     //   localStorage.setItem('token', key.auth_token);

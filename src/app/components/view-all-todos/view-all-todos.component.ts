@@ -28,11 +28,18 @@ export class ViewAllTodosComponent implements OnInit {
     });
   }
   onTodosDelete(id) {
-    this.apiService.deleteTodo(id).subscribe( todo => {
-      this.apiService.allTodos().subscribe(todos => {
-        this.todos = todos;
+    const r = confirm('Are you sure to delete this item?');
+    if (r) {
+      this.apiService.deleteTodo(id).subscribe( todo => {
+        this.apiService.allTodos().subscribe(todos => {
+          this.todos = todos;
+        });
       });
-    });
+    } else {
+      window.alert('action averted');
+    }
+
+
   }
 
 }

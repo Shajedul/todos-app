@@ -13,7 +13,13 @@
 
     <tr *ngFor="let todo of todos; index as todo_id">
       <td>
-        <a routerLink="/tasks/{{todo.id}}/items" >{{todo.title}}</a>
+        <div >
+          <a routerLink="/tasks/{{todo.id}}/items" >{{todo.title}}</a>
+        </div>
+        <ng-template #loggedOut>
+          {{todo.title}}
+        </ng-template>
+
       </td>
       <td>{{todo.created_by}}</td>
       <td>{{todo.created_at}}</td>

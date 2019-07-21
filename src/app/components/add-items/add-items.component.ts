@@ -15,14 +15,18 @@ export class AddItemsComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit()
-  {
-    const newItem = {
-      name: this.name,
-      done: this.done
+  onSubmit() {
+    if (this.name)
+    {
+      const newItem = {
+        name: this.name,
+        done: this.done
+      };
+      this.addItem.emit(newItem);
+      this.name = '';
+    } else {
+      window.alert('Input can not be Empty');
     }
-    this.addItem.emit(newItem);
-    this.name = '';
   }
 
 }

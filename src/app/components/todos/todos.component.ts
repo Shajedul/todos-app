@@ -38,11 +38,18 @@ export class TodosComponent implements OnInit {
     ));
   }
   public onTodosDelete(id) {
-    this.apiService.deleteTodo(id).subscribe( todo => {
-      this.apiService.getallTodos().subscribe(todos => {
-        this.todos = todos;
+    const r = confirm('Are you sure to delete this item?');
+
+    if (r) {
+      console.log('Starting to delete');
+      this.apiService.deleteTodo(id).subscribe( todo => {
+        this.apiService.getallTodos().subscribe(todos => {
+          this.todos = todos;
+        });
       });
-    });
+    } else {
+      window.alert('Action reverted');
+    }
   }
 
 }

@@ -25,11 +25,12 @@ export class ShowTodoComponent implements OnInit {
 
   public updateTodo(todo) {
     this.apiService.updateTodo(this.todo_id, todo).subscribe(todo => {
-      this.apiService.getTodo(this.todo_id).subscribe(todo => {
-        this.todo = todo;
-      });
+      // this.apiService.getTodo(this.todo_id).subscribe(todo => {
+      //   this.todo = todo;
+      // });
+      console.log(todo);
+      this.todo = todo;
     });
-    
   }
 
 }

@@ -19,6 +19,7 @@ import { AddItemsComponent } from './components/add-items/add-items.component';
 import { EditItemsComponent } from './components/edit-items/edit-items.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ViewAllTodosComponent } from './components/view-all-todos/view-all-todos.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { SignupComponent } from './components/signup/signup.component';
     EditItemsComponent,
     LoginComponent,
     SignupComponent,
+    ViewAllTodosComponent,
   ],
   imports: [
     BrowserModule,

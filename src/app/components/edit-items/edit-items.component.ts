@@ -29,11 +29,13 @@ export class EditItemsComponent implements OnInit {
 
   updateItem(task) {
     this.apiService.updateItem(this.todo_id, this.item_id, task).subscribe( task =>{
-      this.apiService.getItem(this.todo_id,this.item_id).subscribe(item =>{
-        console.log(item);
-        this.item = item;
-      });
-    })
+      // this.apiService.getItem(this.todo_id,this.item_id).subscribe(item =>{
+      //   console.log(item);
+      //   this.item = item;
+      // });
+      console.log(task);
+      this.item =task;
+    });
   }
 
 }

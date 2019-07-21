@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Todo} from '../../model/todo.model';
-
+import { AuthService } from '../../service/auth.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-todos',
@@ -12,9 +13,12 @@ export class TodosComponent implements OnInit {
   todos: Todo[];
   todo: Todo;
   toggler: string= 'hidden';
-  constructor(private apiService: ApiService) { }
+  constructor( private apiService: ApiService, private authService: AuthService, private router: Router ) { }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/todos/all']);
+    }
     this.apiService.getallTodos().subscribe(todos => {
       this.todos = todos;
       //localStorage.setItem('token', todos.auth_token);
@@ -25,7 +29,6 @@ export class TodosComponent implements OnInit {
     this.apiService.createTodo(todo).subscribe(( todos=> {
       this.todos.push(todo);
 
-
       this.apiService.getallTodos().subscribe(todos => {
         this.todos = todos;
         //localStorage.setItem('token', todos.auth_token);
@@ -35,11 +38,18 @@ export class TodosComponent implements OnInit {
     ));
   }
   public onTodosDelete(id) {
-    this.apiService.deleteTodo(id).subscribe( todo => {
-      this.apiService.getallTodos().subscribe(todos => {
-        this.todos = todos;
+    const r = confirm('Are you sure to delete this item?');
+
+    if (r) {
+      console.log('Starting to delete');
+      this.apiService.deleteTodo(id).subscribe( todo => {
+        this.apiService.getallTodos().subscribe(todos => {
+          this.todos = todos;
+        });
       });
-    });
+    } else {
+      window.alert('Action reverted');
+    }
   }
 
 }

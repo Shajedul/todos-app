@@ -24,17 +24,23 @@
     <tr>
       <th>Name</th>
       <th>Done ?</th>
-      <th>Action</th>
+      <th *ngIf="can">Action</th>
     </tr>
     </thead>
     <tbody>
 
     <tr *ngFor="let task of tasks">
       <td>
-        <a routerLink="/todos/{{todo_id}}/items/{{task.id}}"> {{task.name}}"</a>
+        <div *ngIf="can; else unauthorized">
+          <a routerLink="/todos/{{todo_id}}/items/{{task.id}}"> {{task.name}}"</a>
+        </div>
+        <ng-template #unauthorized>
+          {{task.name}}
+        </ng-template>
+
       </td>
       <td>{{task.done}}</td>
-      <td>
+      <td *ngIf="can">
         <form (ngSubmit)="onItemDelete(todo_id, task.id)" >
           <button>Delete</button>
         </form>
@@ -43,5 +49,5 @@
     </tr>
     </tbody>
   </table>
-  <app-add-items (addItem)= "addItem($event)"></app-add-items>
+  <app-add-items *ngIf="can" (addItem)= "addItem($event)"></app-add-items>
 </div>

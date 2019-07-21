@@ -1,6 +1,6 @@
 <div>
-  <form class="form" (ngSubmit)="onSubmit()" >
-    <input type="text" name="title" [(ngModel)]="title" placeholder="Add new todo">
+  <form class="form"  (ngSubmit)="onSubmit()" >
+    <input type="text" name="title" [(ngModel)]="title" placeholder="Add new todo" required>
     <button type="submit" value="Submit">Add</button>
   </form>
 </div>

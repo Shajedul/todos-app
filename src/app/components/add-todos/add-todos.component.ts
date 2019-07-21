@@ -14,12 +14,16 @@ export class AddTodosComponent implements OnInit {
   ngOnInit() {
   }
   public onSubmit() {
-    const todo = {
-      title: this.title,
-    };
+    if (this.title) {
+      const todo = {
+        title: this.title,
+      };
 
-    this.addTodo.emit(todo);
-
+      this.addTodo.emit(todo);
+      this.title = '';
+    } else {
+      window.alert('Input can not be empty');
+    }
   }
 
 }

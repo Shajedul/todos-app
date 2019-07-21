@@ -16,8 +16,8 @@ export class ShowItemsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params=> {
-      this.todo_id= params.get('todo_id');
-      this.item_id= params.get('item_id');
+      this.todo_id = params.get('todo_id');
+      this.item_id = params.get('item_id');
       console.log(this.todo_id);
     });
     this.apiService.getItem(this.todo_id, this.item_id).subscribe(item => {

@@ -4,8 +4,6 @@
     <tr>
       <th>Title</th>
       <th>Created By</th>
-      <th>Created at</th>
-      <th>Updated at</th>
       <th *ngIf="authService.isLoggedIn()" >Action</th>
     </tr>
     </thead>
@@ -21,9 +19,7 @@
         </ng-template>
 
       </td>
-      <td>{{todo.created_by}}</td>
-      <td>{{todo.created_at}}</td>
-      <td>{{todo.updated_at}}</td>
+      <td>{{todo.username}}</td>
       <td *ngIf="authService.isLoggedIn()">
         <div *ngIf="todo.created_by == this.userId ">
           <button class="btn btn-danger" data-target="#deleteModal" data-toggle="modal" (click)="setTodo(todo.id)">Delete</button>

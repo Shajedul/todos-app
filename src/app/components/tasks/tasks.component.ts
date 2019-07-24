@@ -32,7 +32,6 @@ export class TasksComponent implements OnInit {
     this.canAdd();
   }
 
-
   public addItem(task) {
     console.log(task);
     this.apiService.createTask(task, this.todo_id).subscribe( task =>{
@@ -42,7 +41,6 @@ export class TasksComponent implements OnInit {
       });
     });
   }
-
   public onItemDelete(todo_id, item_id) {
     this.apiService.deleteItem(todo_id, item_id).subscribe(task=> {
       this.apiService.getallTasks(this.todo_id).subscribe(tasks =>{

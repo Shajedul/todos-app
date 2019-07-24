@@ -17,7 +17,8 @@
 
 
 <div class="container container-fluid">
-<table class="table">
+  <app-add-todos (addTodo)="addTodo($event)"></app-add-todos>
+  <table class="table">
   <thead>
   <tr>
     <th>Title</th>
@@ -43,7 +44,7 @@
   </tr>
   </tbody>
 </table>
-  <app-add-todos (addTodo)="addTodo($event)"></app-add-todos>
+
   <div>
     <div class="modal" id="deleteModal" tabindex="-1">
       <div class="modal-dialog" >

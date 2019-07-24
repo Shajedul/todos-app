@@ -18,7 +18,8 @@
 
 
 
-<div class="container container-fluid">
+<div >
+  <app-add-items *ngIf="can" (addItem)= "addItem($event)"></app-add-items>
   <table class="table">
     <thead>
     <tr>
@@ -29,26 +30,39 @@
     </thead>
     <tbody>
 
-    <tr *ngFor="let task of tasks; index as srl">
-      <td>
-        <div *ngIf="can; else unauthorized">
-          <a routerLink="/todos/{{todo_id}}/items/{{task.id}}"> {{task.name}}"</a>
+    <div *ngIf="can; else unauthorized_div">
+      <tr *ngFor="let task of tasks; index as srl">
+        <td>
+          <div *ngIf="can; else unauthorized">
+            <a routerLink="/todos/{{todo_id}}/items/{{task.id}}"> {{task.name}}"</a>
+          </div>
+          <ng-template #unauthorized>
+            {{task.name}}
+          </ng-template>
+
+        </td>
+        <td>{{task.done}}</td>
+        <td *ngIf="can">
+          <button class="btn btn-danger" data-target="#deleteModal" data-toggle="modal" (click)="setItem(todo_id, task.id)">Delete</button>
+
+          <a class="btn btn-info" routerLink="/todos/{{todo_id}}/items/{{task.id}}/edit">Edit</a>
+        </td>
+      </tr>
+
+    </div>
+    <ng-template #unauthorized_div>
+      <tr  *ngFor="let task of tasks">
+        <div *ngIf="task.done">
+          <td>
+            {{task.name}}
+          </td>
         </div>
-        <ng-template #unauthorized>
-          {{task.name}}
-        </ng-template>
+      </tr>
+    </ng-template>
 
-      </td>
-      <td>{{task.done}}</td>
-      <td *ngIf="can">
-        <button class="btn btn-danger" data-target="#deleteModal" data-toggle="modal" (click)="setItem(todo_id, task.id)">Delete</button>
-
-        <a class="btn btn-info" routerLink="/todos/{{todo_id}}/items/{{task.id}}/edit">Edit</a>
-      </td>
-    </tr>
     </tbody>
   </table>
-  <app-add-items *ngIf="can" (addItem)= "addItem($event)"></app-add-items>
+
 
 
   <div>
@@ -74,8 +88,6 @@
       </div>
     </div>
   </div>
-
-
 
 
 

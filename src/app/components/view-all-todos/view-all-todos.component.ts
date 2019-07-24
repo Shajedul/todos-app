@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./view-all-todos.component.css']
 })
 export class ViewAllTodosComponent implements OnInit {
-  todos: Todo[];
+  todos;
   todo: Todo;
   userId: number;
   delete_todo;
@@ -27,6 +27,16 @@ export class ViewAllTodosComponent implements OnInit {
       console.log(todos);
       console.log(this.userId);
     });
+    this.mkjson();
+  }
+  mkjson() {
+    const a = [];
+    let i = 0;
+    this.todos.forEach(todo => {
+      a[i] = todo.created_by;
+      i++;
+    });
+    console.log(a);
   }
   onTodosDelete(id) {
     this.apiService.deleteTodo(id).subscribe( todo => {
@@ -38,5 +48,11 @@ export class ViewAllTodosComponent implements OnInit {
   public setTodo(todo_id) {
     this.delete_todo = todo_id;
   }
+  public getUserName(id) {
+    this.authService.getUserName(id).subscribe(names => {
+      console.log(names);
+    });
+  }
+
 
 }

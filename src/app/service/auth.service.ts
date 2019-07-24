@@ -50,10 +50,18 @@ export class AuthService {
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+  public logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires_at');
+    return;
+  }
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     //console.log(moment(expiresAt));
     return moment(expiresAt);
+  }
+  getUserName(id): Observable<any> {
+    return this.http.get<any>(`${this.rootUrl}/users`, id );
   }
 }

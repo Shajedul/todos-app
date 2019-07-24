@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     //console.log(this.email);
     this.authService.login(this.email, this.password);
     setTimeout(res => {
-      if (this.authService.isLoggedIn()) {
+      if (!this.authService.isLoggedIn()) {
         window.alert('Successfully Logged in')
         this.router.navigate(['/']);
       } else {

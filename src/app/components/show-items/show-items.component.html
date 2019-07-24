@@ -1,7 +1,14 @@
-<div>
+<div class="form-text">
     <ul>
-        <li> {{ item.name }} </li>
-        <li> {{ item.done }} </li>
+        <li>Task: {{item.name}}</li>
+        <li>Description: {{item.description}}</li>
+        <li>Completed: {{ item.done }}</li>
+        <li>Created By: {{item.created_at}} </li>
+        <li>Published Date: </li>
         <li> <a routerLink="edit">Edit</a> </li>
     </ul>
+</div>
+
+<div>
+
 </div>

@@ -18,12 +18,13 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/todos/all']);
+    } else {
+      this.apiService.getallTodos().subscribe(todos => {
+        this.todos = todos;
+        //localStorage.setItem('token', todos.auth_token);
+        console.log(todos);
+      });
     }
-    this.apiService.getallTodos().subscribe(todos => {
-      this.todos = todos;
-      //localStorage.setItem('token', todos.auth_token);
-      console.log(todos);
-    });
   }
   public addTodo(todo) {
     this.apiService.createTodo(todo).subscribe(( todos=> {
@@ -47,5 +48,6 @@ export class TodosComponent implements OnInit {
   public setTodo(todo_id) {
     this.delete_todo = todo_id;
   }
+
 
 }

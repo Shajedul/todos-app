@@ -2,7 +2,8 @@
     <ul>
         <li>{{item.name}}</li>
         <li>{{item.done}}</li>
+        <li>{{item.description}}</li>
     </ul>
 </div>
 
-<app-add-items (addItem)="updateItem($event)" [name]= "item.name" [done]='item.done'></app-add-items>
+<app-add-items (addItem)="updateItem($event)" [name]= "item.name" [done]='item.done' [description]='item.description'></app-add-items>
